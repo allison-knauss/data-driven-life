@@ -17,4 +17,5 @@ Universe state is in this form, where true cells on the grid are alive, and fals
         [ false, true, true ],
         [ true, false, false ]
     ]
+}
 ```
