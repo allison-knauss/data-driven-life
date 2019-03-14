@@ -1,3 +1,4 @@
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,6 +11,7 @@ const swaggerJSDoc = require('swagger-jsdoc');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var universeRouter = require('./routes/universe');
 
 var app = express();
 
@@ -27,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/universe', universeRouter);
 
 
 // Setup swagger
