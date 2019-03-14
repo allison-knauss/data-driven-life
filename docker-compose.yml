@@ -1,0 +1,21 @@
+version: '2'
+services:
+  server:
+    build: mol-server/
+    command: npm start
+    ports:
+      - "5020:5020"
+  web:
+    build: mol-web/
+    command: npm start
+    ports:
+      - "5000:5000"
+    depends_on:
+      - server
+  mobile:
+    build: mol-mobile/
+    command: npm start
+    ports:
+      - "5010:5010"
+    depends_on:
+      - server
