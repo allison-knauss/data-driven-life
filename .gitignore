@@ -62,3 +62,7 @@ typings/
 
 # vim-specific files
 *.swp
+
+# misc
+.idea/
+.DS_Store
