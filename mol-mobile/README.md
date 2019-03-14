@@ -1,6 +1,6 @@
 # Mobile Client for Meaning of Life
 
-## Tecnologies
+## Technologies
 
 - Cordova
 - Ionic
