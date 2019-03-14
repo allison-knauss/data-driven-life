@@ -1,5 +1,15 @@
 # Server for Meaning of Life
 
+## Running
+
+To run, use: `npm start`
+
+## Testing
+
+To run unit tests, use: `npm test`
+
+To run integraton tests, use: `cypress open`
+
 ## Technologies
 
 - Node
