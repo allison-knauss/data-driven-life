@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --recursive"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -15,5 +16,10 @@
     "morgan": "~1.9.0",
     "swagger-jsdoc": "^3.2.7",
     "swagger-ui-express": "^4.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "sinon": "^7.2.7"
   }
 }
