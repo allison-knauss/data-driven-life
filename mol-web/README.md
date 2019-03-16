@@ -2,6 +2,10 @@
 
 Web dashboard for Meaning of Life
 
+## UI Design
+
+InVision design prototype can be found at https://projects.invisionapp.com/prototype/Meaning-of-Life-Web-UI-cjtbr7p8x000o0f01dz3qkw0g
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
