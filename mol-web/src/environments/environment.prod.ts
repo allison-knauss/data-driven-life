@@ -1,4 +1,8 @@
 export const environment = {
   production: true,
-  api: 'http://server:5020/'
+  api: {
+    universe: {
+      url: 'http://server:5020/universe'
+    }
+  }
 };

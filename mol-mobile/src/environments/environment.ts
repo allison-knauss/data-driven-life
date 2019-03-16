@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  api: 'http://server:5020/'
+  api: {
+    universe: {
+      url: 'http://localhost:5020/universe'
+    }
+  }
 };
 
 /*
