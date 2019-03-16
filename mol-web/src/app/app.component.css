@@ -1,0 +1,39 @@
+.mol-app {
+  text-align: center;
+  background-color: black;
+}
+
+.title {
+  height: 8vh;
+  padding: 0;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 0vh;
+  margin-rigth: 0vh;
+  color: white;
+}
+
+.layout-grid {
+  height: 88vh;
+}
+
+.mat-grid-tile {
+  border: 1px solid white;
+}
+
+.stats-area {
+  background-color: #c8c8c8;
+}
+
+.buttons-area {
+  background-color: #c8c8c8;
+}
+
+.buttons-area button {
+  margin-right: 5px;
+}
+
+.stats-chip-list {
+  width: 200px;
+}
+

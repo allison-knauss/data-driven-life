@@ -7,7 +7,7 @@ import { UniverseService } from './universe.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'mol-web';
+  title = 'Meaning of Life - Game of Life Universe';
   private universe;
 
   constructor(private universeService: UniverseService) {}
@@ -28,5 +28,33 @@ export class AppComponent implements OnInit {
       this.universe = data;
       console.log(data);
     });
+  }
+
+  public stepUniverse() {
+    this.universeService.stepUniverse(this.universe.id).subscribe((data) => {
+      this.universe = data;
+      console.log(data);
+    });
+  }
+
+  public calcLiveCells() {
+    if (!this.universe) {
+      return 0;
+    }
+    const grid = this.universe.grid;
+    let result = 0;
+    for (let y = 0; y < grid.length; y++) {
+      for (let x = 0; x < grid[y].length; x++) {
+        if (grid[y][x]) {
+          result++;
+        }
+      }
+    }
+    return result;
+  }
+
+  public detectEntities() {
+    // TODO: Implement this
+    return 'No entities detected';
   }
 }
