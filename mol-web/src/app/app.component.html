@@ -1,7 +1,46 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
+<div class="mol-app">
+  <h1 class="title">
+    {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <mat-grid-list cols="4" class="layout-grid" rowHeight="fit">
+
+    <mat-grid-tile class="grid-area" colspan="3" rowspan="7">
+
+      <svg
+        class="grid"
+        [attr.width]="drawingWidth"
+        [attr.height]="drawingHeight">
+        <g *ngFor="let c of cells" [attr.transform]="'translate('+c.x*cellWidth+','+c.y*cellHeight+')'" (click)="cellGenesis(c)">
+          <rect [attr.width]="cellWidth" [attr.height]="cellHeight" [attr.fill]="c.color" style="stroke-width: 1; stroke:#dcdcdc;"></rect>
+        </g>
+      </svg>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile class="stats-area" colspan="1" rowspan="8">
+      <mat-chip-list class="stats-chip-list mat-chip-list-stacked">
+        <mat-chip class="stats-chip" selected color="primary">
+          {{universe ? 'Id ' + universe.id : 'No Universe Loaded' }}
+        </mat-chip>
+        <mat-chip class="stats-chip" selected color="primary">
+          {{universe && universe.age ? 'Age ' + universe.age : 'Just Created'}}
+        </mat-chip>
+        <mat-chip class="stats-chip" selected color="primary">
+          {{universe && universe.grid ? universe.grid[0].length : 0}} x {{universe && universe.grid ? universe.grid[1].length : 0}}
+        </mat-chip>
+        <mat-chip class="stats-chip" selected color="primary">
+          {{calcLiveCells()}} live cells
+        </mat-chip>
+        <mat-chip class="stats-chip" selected color="primary">
+          {{detectEntities()}}
+        </mat-chip>
+      </mat-chip-list>
+    </mat-grid-tile>
+    <mat-grid-tile class="buttons-area" colspan="3" rowspan="1">
+      <button mat-raised-button color="warn" (click)="runUniverse()">RUN UNIVERSE</button>
+      <button mat-raised-button color="primary" (click)="stepUniverse()">STEP UNIVERSE</button>
+      <button mat-raised-button color="accent" (click)="getNewUniverse()">NEW UNIVERSE</button>
+      <button mat-raised-button color="accent" (click)="getNewRandomSoup()">NEW RANDOM SOUP</button>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

@@ -27,4 +27,8 @@ export class UniverseService {
   stepUniverse(id: number): Observable<any> {
     return this.http.get(`${this.api.url}/${id}/step`);
   }
+
+  getNewRandomSoup(): Observable<any> {
+    return this.http.get(`${this.api.url}?soup=1`);
+  }
 }
