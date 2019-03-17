@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const universeProvider = require('../providers/universe-provider');
 
@@ -13,6 +13,11 @@ const universeProvider = require('../providers/universe-provider');
  *        description: State of the new universe
  */
 router.get('/', function(req, res, next) {
+
+    if (req.query.soup) {
+        res.send(universeProvider.newSoup());
+        return;
+    }
     res.send(universeProvider.newUniverse());
 });
 
@@ -43,6 +48,5 @@ router.get('/:id', function(req, res, next) {
 router.get('/:id/step', function(req, res, next) {
     res.send(universeProvider.stepUniverse(req.params.id));
 });
-
 
 module.exports = router;

@@ -10,8 +10,8 @@ export class AppComponent implements OnInit {
   title = 'Meaning of Life - Game of Life Universe';
   private universe;
   private cells = [];
-  private drawingWidth = 10;
-  private drawingHeight = 10;
+  private drawingWidth = 100;
+  private drawingHeight = 100;
   private cellWidth = 10;
   private cellHeight = 10;
   private deadColor = 'gray';
@@ -20,13 +20,13 @@ export class AppComponent implements OnInit {
   constructor(private universeService: UniverseService) {}
 
   ngOnInit() {
-    this.getUniverse(1);
+    this.initGrid();
+    this.getNewRandomSoup();
   }
 
   public getNewUniverse() {
     this.universeService.getNewUniverse().subscribe((data) => {
       this.universe = data;
-      this.initGrid();
       this.gridCells();
       console.log(data);
     });
@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
   public getUniverse(id: number) {
     this.universeService.getUniverse(id).subscribe((data) => {
       this.universe = data;
-      this.initGrid();
       this.gridCells();
       console.log(data);
     });
@@ -54,13 +53,12 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.stepUniverse();
       this.runUniverse();
-    }, 1000);
+    }, 500);
   }
 
   public getNewRandomSoup() {
     this.universeService.getNewRandomSoup().subscribe((data) => {
       this.universe = data;
-      this.initGrid();
       this.gridCells();
       console.log(data);
     });
@@ -82,13 +80,12 @@ export class AppComponent implements OnInit {
   }
 
   initGrid() {
-    const grid = this.universe.grid;
-    this.drawingWidth = grid[0].length * this.cellWidth;
-    this.drawingHeight = grid.length * this.cellHeight;
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
+    for (let y = 0; y < this.drawingHeight; y++) {
+      for (let x = 0; x < this.drawingWidth; x++) {
+        const alive = false;
+        const color = this.deadColor;
         this.cells.push({
-          x, y, alive: false, color: this.deadColor
+          x, y, alive, color
         });
       }
     }
@@ -100,6 +97,8 @@ export class AppComponent implements OnInit {
       return this.cells;
     }
     const grid = this.universe.grid;
+    this.drawingWidth = grid[0].length * this.cellWidth;
+    this.drawingHeight = grid.length * this.cellHeight;
     for (let y = 0; y < grid.length; y++) {
       for (let x = 0; x < grid[y].length; x++) {
         if (grid[y][x] === true) {

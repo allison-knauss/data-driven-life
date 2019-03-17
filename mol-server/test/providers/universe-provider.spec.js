@@ -256,5 +256,76 @@ describe('Universe Provider', function() {
 
     });
 
+    it('should have a newSoup function', function() {
+       expect(universeProvider.newSoup).to.exist;
+    });
+
+    describe('A new soup', function() {
+
+        beforeEach('Clearing universe list', function() {
+                universeProvider._universes = [];
+            });
+
+        it('should have living cells', function() {
+           let universe = universeProvider.newSoup();
+           let grid = universe.grid;
+           let livingCellCount = 0;
+
+           for (let y = 0; y < grid.length; y++) {
+               for (let x = 0; x < grid[0].length; x++) {
+                   if (grid[y][x] === true) {
+                       livingCellCount++;
+                   }
+               }
+           }
+           livingCellCount.should.be.greaterThan(0);
+        });
+
+        it('should have different living cells on each call', function() {
+            let universe1 = universeProvider.newSoup();
+            let universe2 = universeProvider.newSoup();
+
+            // TODO: I use this pattern all the time, refactor!
+            let livingCellCount1 = 0;
+            let grid = universe1.grid;
+            for (let y = 0; y < grid.length; y++) {
+                for (let x = 0; x < grid[0].length; x++) {
+                    if (grid[y][x] === true) {
+                        livingCellCount1++;
+                    }
+                }
+            }
+
+            let livingCellCount2 = 0;
+            grid = universe2.grid;
+            for (let y = 0; y < grid.length; y++) {
+                for (let x = 0; x < grid[0].length; x++) {
+                    if (grid[y][x] === true) {
+                        livingCellCount2++;
+                    }
+                }
+            }
+
+            expect(livingCellCount1).to.not.equal(livingCellCount2);
+        });
+
+        it('should have at least 1% of its cells alive', function() {
+            let universe = universeProvider.newSoup();
+            let grid = universe.grid;
+            let livingCellCount = 0;
+
+            for (let y = 0; y < grid.length; y++) {
+                for (let x = 0; x < grid[0].length; x++) {
+                    if (grid[y][x] === true) {
+                        livingCellCount++;
+                    }
+                }
+            }
+            livingCellCount.should.be.greaterThan(
+                Math.floor(universeProvider.dimensions[0] * universeProvider.dimensions[1] * 0.01));
+        });
+
+    });
+
 });
 
