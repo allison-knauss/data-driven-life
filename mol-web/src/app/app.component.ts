@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   private cellHeight = 10;
   private deadColor = 'gray';
   private aliveColor = 'yellow';
+  private keepRunning = false;
 
   constructor(private universeService: UniverseService) {}
 
@@ -49,11 +50,23 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public runUniverse() {
+  runUniverse() {
+    if (this.keepRunning === false) {
+      return;
+    }
+    this.stepUniverse();
     setTimeout(() => {
-      this.stepUniverse();
-      this.runUniverse();
+        this.runUniverse();
     }, 500);
+  }
+
+  public startStopUniverse() {
+    if (this.keepRunning === true) {
+      this.keepRunning = false;
+    } else {
+      this.keepRunning = true;
+      this.runUniverse();
+    }
   }
 
   public getNewRandomSoup() {

@@ -37,7 +37,7 @@
       </mat-chip-list>
     </mat-grid-tile>
     <mat-grid-tile class="buttons-area" colspan="3" rowspan="1">
-      <button mat-raised-button color="warn" (click)="runUniverse()">RUN UNIVERSE</button>
+      <button mat-raised-button color="warn" (click)="startStopUniverse()">{{keepRunning? 'STOP' : 'RUN UNIVERSE'}}</button>
       <button mat-raised-button color="primary" (click)="stepUniverse()">STEP UNIVERSE</button>
       <button mat-raised-button color="accent" (click)="getNewUniverse()">NEW UNIVERSE</button>
       <button mat-raised-button color="accent" (click)="getNewRandomSoup()">NEW RANDOM SOUP</button>
