@@ -29,6 +29,6 @@ export class UniverseService {
   }
 
   getNewRandomSoup(): Observable<any> {
-    return this.http.get(`${this.api.url}?soup=1`);
+    return this.http.get(`${this.api.url}/?soup=1`);
   }
 }

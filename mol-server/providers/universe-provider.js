@@ -34,6 +34,18 @@ class UniverseProvider {
         return this._universes[idx];
     }
 
+    newSoup() {
+        let universe = this.newUniverse();
+
+        for (let num = 0; num < (this._dimensions[0] * this._dimensions[1] * 0.05); num++) {
+            let x = Math.floor(Math.random() * this._dimensions[0]);
+            let y = Math.floor(Math.random() * this._dimensions[1]);
+            universe.grid[y][x] = true;
+        }
+
+        return universe;
+    }
+
     getUniverse(id) {
         if (id < 0 || id >= this._universes.length) {
             throw Error("Invalid ID");
@@ -105,7 +117,7 @@ class UniverseProvider {
                 // Out of bounds, skip it.
                 continue;
             }
-            if (grid[direction[1]][direction[0]]) {
+            if (grid[direction[1]][direction[0]] === true) {
                 n_neighbors += 1;
             }
         }
